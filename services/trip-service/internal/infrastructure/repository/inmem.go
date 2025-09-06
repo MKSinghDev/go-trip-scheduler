@@ -5,6 +5,7 @@ import (
 	"context"
 
 	"ride-sharing/services/trip-service/internal/domain"
+	triptypes "ride-sharing/services/trip-service/pkg/types"
 	"ride-sharing/shared/types"
 )
 
@@ -25,6 +26,6 @@ func (r *inmemRepository) CreateTrip(ctx context.Context, trip *domain.TripModel
 	return trip, nil
 }
 
-func (r *inmemRepository) GetRoute(ctx context.Context, pickup, destination *types.Coordinate) (*types.OsrmAPIResponse, error) {
+func (r *inmemRepository) GetRoute(ctx context.Context, pickup, destination *types.Coordinate) (*triptypes.OsrmAPIResponse, error) {
 	return nil, nil
 }
