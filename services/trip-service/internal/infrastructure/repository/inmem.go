@@ -5,8 +5,6 @@ import (
 	"context"
 
 	"ride-sharing/services/trip-service/internal/domain"
-	triptypes "ride-sharing/services/trip-service/pkg/types"
-	"ride-sharing/shared/types"
 )
 
 type inmemRepository struct {
@@ -26,6 +24,8 @@ func (r *inmemRepository) CreateTrip(ctx context.Context, trip *domain.TripModel
 	return trip, nil
 }
 
-func (r *inmemRepository) GetRoute(ctx context.Context, pickup, destination *types.Coordinate) (*triptypes.OsrmAPIResponse, error) {
-	return nil, nil
+func (r *inmemRepository) SaveRideFare(ctx context.Context, f *domain.RideFareModel) error {
+	r.rideFares[f.ID.Hex()] = f
+
+	return nil
 }
