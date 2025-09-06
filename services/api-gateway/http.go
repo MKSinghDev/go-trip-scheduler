@@ -6,11 +6,14 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 
 	"ride-sharing/shared/contracts"
 )
 
 func handleTripPreview(w http.ResponseWriter, r *http.Request) {
+	time.Sleep(9 * time.Second)
+
 	var reqBody previewTripRequest
 	if err := json.NewDecoder(r.Body).Decode(&reqBody); err != nil {
 		http.Error(w, "failed to parse JSON data", http.StatusBadRequest)
