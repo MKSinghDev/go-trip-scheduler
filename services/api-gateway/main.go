@@ -7,17 +7,22 @@ import (
 	"ride-sharing/shared/env"
 )
 
-var (
-	httpAddr = env.GetString("HTTP_ADDR", ":8081")
-)
+var httpAddr = env.GetString("HTTP_ADDR", ":8081")
 
 func main() {
-	log.Println("Starting API Gateway")
+	log.Println("🎬 Starting API Gateway")
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("Hello from API Gateway"))
-	})
+	mux := http.NewServeMux()
+	mux.HandleFunc("POST /trip/preview", handleTripPreview)
 
-	http.ListenAndServe(httpAddr, nil)
+	server := &http.Server{
+		Addr:    httpAddr,
+		Handler: mux,
+	}
+
+	log.Printf("🚀 API Gateway listening at %v", httpAddr)
+
+	if err := server.ListenAndServe(); err != nil {
+		log.Printf("💥 Failed to start the API Gateway, error: %v", err)
+	}
 }

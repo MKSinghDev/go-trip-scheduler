@@ -1,7 +1,7 @@
 FROM alpine
 WORKDIR /app
 
-ADD shared shared
-ADD build build
+COPY shared shared
+COPY build build
 
 ENTRYPOINT build/api-gateway
