@@ -4,6 +4,7 @@ package domain
 import (
 	"context"
 
+	pbd "ride-sharing/shared/proto/driver"
 	"ride-sharing/shared/types"
 
 	triptypes "ride-sharing/services/trip-service/pkg/types"
@@ -37,6 +38,8 @@ type TripRepository interface {
 	SaveRideFare(ctx context.Context, f *RideFareModel) error
 
 	GetRideFareByID(ctx context.Context, id string) (*RideFareModel, error)
+	GetTripByID(ctx context.Context, fareID string) (*TripModel, error)
+	UpdateTrip(ctx context.Context, tripID string, status string, driver *pbd.Driver) error
 }
 
 type TripService interface {
@@ -46,4 +49,6 @@ type TripService interface {
 	GenerateTripFares(ctx context.Context, fares []*RideFareModel, userID string, route *triptypes.OsrmAPIResponse) ([]*RideFareModel, error)
 
 	GetAndValidateFare(ctx context.Context, fareID, userID string) (*RideFareModel, error)
+	GetTripByID(ctx context.Context, fareID string) (*TripModel, error)
+	UpdateTrip(ctx context.Context, tripID string, status string, driver *pbd.Driver) error
 }

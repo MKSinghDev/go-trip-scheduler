@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"log"
+	"math/rand"
 
 	"ride-sharing/shared/contracts"
 	"ride-sharing/shared/messaging"
@@ -65,7 +66,8 @@ func (c *tripEventConsumer) handleFindAndNotifyDrivers(ctx context.Context, payl
 		return nil
 	}
 
-	suitableDriverID := suitableIDs[0]
+	randomIndex := rand.Intn(len(suitableIDs))
+	suitableDriverID := suitableIDs[randomIndex]
 
 	marshalledEvent, err := json.Marshal(payload)
 	if err != nil {
