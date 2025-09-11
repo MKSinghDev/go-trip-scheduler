@@ -8,7 +8,7 @@ import (
 const (
 	FindAvailableDriversQueue        = "find_available_drivers"
 	DriverCmdTripRequestQueue        = "driver_cmd_trip_request"
-	DriverCmdTripResponseQueue       = "driver_cmd_trip_response"
+	DriverTripResponseQueue          = "driver_trip_response"
 	NotifyRiderNoDriversFoundQueue   = "notify_rider_no_drivers_found"
 	NotifyDriverAssignQueue          = "notify_driver_assign"
 	PaymentTripResponseQueue         = "payment_trip_response"
