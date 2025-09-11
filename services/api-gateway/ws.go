@@ -33,6 +33,8 @@ func handleRidersWebSocket(w http.ResponseWriter, r *http.Request, rb *messaging
 	// Initialize queue consumers
 	queues := []string{
 		messaging.NotifyRiderNoDriversFoundQueue,
+		messaging.NotifyDriverAssignQueue,
+		messaging.NotifyPaymentSessionCreatedQueue,
 	}
 	for _, q := range queues {
 		consumer := messaging.NewQueueConsumer(rb, connManager, q)
